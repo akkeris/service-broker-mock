@@ -1,16 +1,19 @@
 package main
 
 import (
-	"net/http"
-	"os"
-        "fmt"
+       "github.com/go-martini/martini"
+        "github.com/martini-contrib/render"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-                fmt.Fprintf(w, "[{\"size\":\"n/a\",\"description\":\"not available\"}]")
-	})
-	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+        m := martini.Classic()
+        m.Use(render.Renderer())
+        m.Get("/v1/:service/plans", plans)
+        m.Run()
 }
 
-
+func plans(params martini.Params, r render.Render) {
+        plans := make(map[string]interface{})
+        plans["n/a"] = "Service Not Available in this Region"
+        r.JSON(200, plans)
+}
