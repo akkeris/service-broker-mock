@@ -1,4 +1,4 @@
-FROM quay.octanner.io/base/oct-golang:1.7
+FROM golang:1.10
 ADD . .
 CMD './start.sh'
 EXPOSE 9000
