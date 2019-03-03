@@ -9,6 +9,7 @@ func main() {
         m := martini.Classic()
         m.Use(render.Renderer())
         m.Get("/v1/:service/plans", plans)
+        m.Get("/v1/kafka/clusters", plans)
         m.Run()
 }
 
