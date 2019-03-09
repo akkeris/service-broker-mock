@@ -15,6 +15,6 @@ func main() {
 
 func plans(params martini.Params, r render.Render) {
         plans := make(map[string]interface{})
-        plans["n/a"] = "Service Not Available in this Region"
+//        plans["n/a"] = "Service Not Available in this Region"
         r.JSON(200, plans)
 }
